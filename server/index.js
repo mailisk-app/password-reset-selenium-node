@@ -1,22 +1,15 @@
 const express = require("express");
-const nodemailer = require("nodemailer");
 const path = require("path");
 const cors = require("cors");
+const { MailiskClient } = require("mailisk");
 const { randomBytes } = require("crypto");
 require("dotenv").config({ path: path.join(__dirname, "../.env") });
 
 const PORT = 3001;
 
-const transport = nodemailer.createTransport({
-  pool: true,
-  host: "smtp.mailisk.net",
-  port: 587,
-  secure: false,
-  auth: {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASSWORD,
-  },
-});
+const NAMESPACE = process.env.NAMESPACE;
+
+const mailisk = new MailiskClient({ apiKey: process.env.API_KEY });
 
 // In a real application you would use something like redis to store one-time passwords (otp)
 const otpStorage = {};
@@ -34,7 +27,7 @@ async function sendResetEmail(email) {
   const resetLink = `http://localhost:3000/reset?email=${email}&otp=${otp}`;
 
   // send email with otp
-  await transport.sendMail({
+  await mailisk.sendVirtualEmail(NAMESPACE, {
     from: "no-reply@example.com",
     to: email,
     subject: "Reset password code",
