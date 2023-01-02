@@ -1,0 +1,22 @@
+{
+  "name": "tests",
+  "version": "1.0.0",
+  "description": "",
+  "main": "password-reset.test.js",
+  "scripts": {
+    "start": "node password-reset.test.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "app": "file:../app",
+    "chromedriver": "^108.0.0",
+    "dotenv": "^16.0.3",
+    "install": "^0.13.0",
+    "mailisk": "^1.0.3",
+    "npm": "^9.2.0",
+    "selenium-webdriver": "^4.7.1",
+    "server": "file:../server"
+  }
+}
