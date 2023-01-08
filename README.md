@@ -6,11 +6,13 @@ This example includes a simple full stack React (NestJS) and Express application
 
 ## Install packages
 
-You will need to install packages in all directories. Run the following command in the root directory:
+You will need to install packages in all directories. Run the following commands in the root directory:
 
 ```shell
-npm --prefix ./server install ./server \
-npm --prefix ./app install ./app \
+npm --prefix ./server install ./server
+
+npm --prefix ./app install ./app
+
 npm --prefix ./tests install ./tests
 ```
 
